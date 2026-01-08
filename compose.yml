@@ -1,0 +1,11 @@
+
+services:
+  mockoon-multi:
+    image: imirsaburov/mockoon-multi:1.0.0
+    build: .
+    container_name: mockoon-gateway
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./envs:/envs
+    restart: unless-stopped
