@@ -1,7 +1,7 @@
 {
   "uuid": "418fb43a-9bcc-4ac7-a9e1-dda59a0a6d1a",
   "lastMigration": 33,
-  "name": "Test2",
+  "name": "merchants",
   "endpointPrefix": "",
   "latency": 0,
   "port": 10001,
@@ -13,11 +13,11 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "",
+      "endpoint": "merchant",
       "responses": [
         {
           "uuid": "64bce715-c39a-4424-9bf0-ad3cb7668e1c",
-          "body": "test2",
+          "body": "merchants",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -32,7 +32,12 @@
           "fallbackTo404": false,
           "default": true,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "7220f439-6817-49b2-9903-b6288ae07fe9",
+              "latency": 0
+            }
+          ]
         }
       ],
       "responseMode": null,
@@ -90,5 +95,29 @@
     }
   ],
   "data": [],
-  "callbacks": []
+  "callbacks": [
+    {
+      "uuid": "7220f439-6817-49b2-9903-b6288ae07fe9",
+      "id": "2rcy",
+      "uri": "http://192.168.101.81:8080",
+      "name": "request logger",
+      "documentation": "",
+      "method": "post",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "instance",
+          "value": "merchants"
+        }
+      ],
+      "bodyType": "INLINE",
+      "body": "",
+      "databucketID": "",
+      "filePath": "",
+      "sendFileAsBody": true
+    }
+  ]
 }
