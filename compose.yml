@@ -9,3 +9,4 @@ services:
     volumes:
       - ./envs:/envs
     restart: unless-stopped
+# docker buildx build --platform linux/amd64,linux/arm64 -t imirsaburov/mockoon-multi:1.0.0 --push .

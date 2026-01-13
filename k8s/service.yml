@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mockoon-gateway
+  namespace: mockoon
+spec:
+  selector:
+    app: mockoon-gateway
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: NodePort  # Or ClusterIP if you only need internal access

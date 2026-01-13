@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mockoon-gateway
+  namespace: mockoon
+  labels:
+    app: mockoon-gateway
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mockoon-gateway
+  template:
+    metadata:
+      labels:
+        app: mockoon-gateway
+    spec:
+      containers:
+        - name: mockoon-gateway
+          image: imirsaburov/mockoon-multi:1.0.0
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: envs-volume
+              mountPath: /envs
+      volumes:
+        - name: envs-volume
+          hostPath:
+            path: /absolute/path/to/your/local/envs
+            type: Directory
