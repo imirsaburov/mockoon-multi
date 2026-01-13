@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: mockoon-gateway
-          image: imirsaburov/mockoon-multi:1.0.0
+          image: imirsaburov/mockoon-multi:1.0.1
           ports:
             - containerPort: 3000
           volumeMounts:
