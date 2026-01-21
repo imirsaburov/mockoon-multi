@@ -12,12 +12,48 @@
       "uuid": "d6fecbfa-2f5f-468e-90a2-d64f97d4ab43",
       "type": "http",
       "documentation": "",
-      "method": "get",
-      "endpoint": "merchant",
+      "method": "post",
+      "endpoint": "test",
       "responses": [
         {
           "uuid": "64bce715-c39a-4424-9bf0-ad3cb7668e1c",
-          "body": "merchants",
+          "body": "{{setData 'set' 'data' 'data.id' (  body 'id') }}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": [
+            {
+              "uuid": "7220f439-6817-49b2-9903-b6288ae07fe9",
+              "latency": 0
+            }
+          ]
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7b7ef1ae-1234-493e-8093-6de63dd2dd61",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "test/:id",
+      "responses": [
+        {
+          "uuid": "ebd21e2e-a7fc-4b6a-b5be-ae29c2bdc334",
+          "body": "{\n  \"data\": {{data 'data' 'data'}}\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -49,6 +85,10 @@
     {
       "type": "route",
       "uuid": "d6fecbfa-2f5f-468e-90a2-d64f97d4ab43"
+    },
+    {
+      "type": "route",
+      "uuid": "7b7ef1ae-1234-493e-8093-6de63dd2dd61"
     }
   ],
   "proxyMode": false,
@@ -94,12 +134,20 @@
       "value": ""
     }
   ],
-  "data": [],
+  "data": [
+    {
+      "uuid": "6b555cf8-9120-44a1-b2fc-9ccfbbe8e706",
+      "id": "p0hd",
+      "name": "data",
+      "documentation": "",
+      "value": "{\n  \"data\":{}\n}"
+    }
+  ],
   "callbacks": [
     {
       "uuid": "7220f439-6817-49b2-9903-b6288ae07fe9",
       "id": "2rcy",
-      "uri": "http://192.168.101.81:8080",
+      "uri": "http://mockoon-logger.mockoon.svc.cluster.local:3000/callback",
       "name": "request logger",
       "documentation": "",
       "method": "post",
