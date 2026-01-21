@@ -147,7 +147,7 @@
     {
       "uuid": "7220f439-6817-49b2-9903-b6288ae07fe9",
       "id": "2rcy",
-      "uri": "http://mockoon-logger.mockoon.svc.cluster.local:3000/callback",
+      "uri": "http://mockoon-logger.mockoon.svc.cluster.local:8080/callback",
       "name": "request logger",
       "documentation": "",
       "method": "post",
