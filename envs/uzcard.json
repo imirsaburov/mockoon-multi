@@ -79,7 +79,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "b78a160f-0393-4773-a673-82da3cb254fa",
@@ -113,7 +118,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "f98be51a-e752-49ac-b2e7-3e3dfa18fff4",
@@ -147,7 +157,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "26ca2328-3d6a-46d9-8af7-fb1f9465cd0e",
@@ -223,7 +238,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "81900ebc-d790-417a-8c92-272710cff573",
@@ -299,7 +319,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "0e5550b8-8582-4d61-9f74-587feabc8dbb",
@@ -375,7 +400,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "80d86c82-3eee-4f6c-96e1-78209aae8dcd",
@@ -458,7 +488,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "29f1ca42-1cb4-41b4-884f-1ced3c0c5903",
@@ -541,7 +576,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "cd2832a4-6520-4478-9c51-a2be06d64124",
@@ -617,7 +657,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "ba06a0b2-752a-48d4-aad2-66dd9515a51d",
@@ -679,7 +724,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "6ff0c981-45db-4c3a-b80a-ee98cd7c35ca",
@@ -741,7 +791,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "924b632b-7b3e-4fd9-9be8-a7ad4bdc37fe",
@@ -803,7 +858,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "f7b4af87-3cbf-4d6f-a10e-1429cfee15bc",
@@ -822,7 +882,12 @@
           "fallbackTo404": false,
           "default": true,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         }
       ],
       "responseMode": null,
