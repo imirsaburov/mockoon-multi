@@ -1,0 +1,916 @@
+{
+  "uuid": "c9ce0840-63fb-4eef-b750-b443bcad41aa",
+  "lastMigration": 33,
+  "name": "uzcard",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 10000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "7c614764-21a1-4f9b-b459-8a2227e5922a",
+      "type": "http",
+      "documentation": "main",
+      "method": "post",
+      "endpoint": "api/jsonrpc",
+      "responses": [
+        {
+          "uuid": "169b0462-b8cd-42cd-87ad-0c4119b9579f",
+          "body": "{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n  \"error\": {\n    \"code\": -199 ,\n    \"message\": \"JsonRpc ERROR\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "rpc error",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "id",
+              "value": "cards.new.otp",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "jsonrpc",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "49a1f513-a4a4-4da6-ab6d-90f71f57275a",
+          "body": "{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n  \"error\": {\n    \"code\": -100 ,\n    \"message\": \"Empty parameters!\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "params empty",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b78a160f-0393-4773-a673-82da3cb254fa",
+          "body": "{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n  \"error\": {\n    \"code\": -202,\n    \"message\": \"Pan invalid, wrong format!\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "cards.new.otp card invalid pan",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.new.otp",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.pan",
+              "value": "^(?!\\d{16}$).+",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f98be51a-e752-49ac-b2e7-3e3dfa18fff4",
+          "body": "{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n  \"error\": {\n    \"code\": -202,\n    \"message\": \"Expiry invalid, wrong format!\",\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "cards.new.otp card invalid expiry",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.new.otp",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.expiry",
+              "value": "^(?!\\d{4}$).+",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "26ca2328-3d6a-46d9-8af7-fb1f9465cd0e",
+          "body": "{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n  \"error\": {\n    \"code\": -200,\n    \"message\": \"Card not found!\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "cards.new.otp pan not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.new.otp",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.pan",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.expiry",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.pan",
+              "value": "[0-9]{16}",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.expiry",
+              "value": "[0-9]{4}",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'cards' (concat (body 'params.card.pan') '.token')}}",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "81900ebc-d790-417a-8c92-272710cff573",
+          "body": "{{setVar 'otpId' (int 1000000000 9999999999)}}\n{{setData 'set' 'otpData' (getVar 'otpId')  (bodyRaw)}}\n{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n  \"result\": {\n    \"id\": {{getVar 'otpId'}},\n    \"phoneMask\": \"{{data 'cards' (concat (body 'params.card.pan') '.phoneMask')}}\",\n    \"token\": \"{{data 'cards' (concat (body 'params.card.pan') '.token')}}\",\n    \"verified\": {{data 'cards' (concat (body 'params.card.pan') '.verified')}}\n   \n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "cards.new.otp success",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.new.otp",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.pan",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.expiry",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.pan",
+              "value": "[0-9]{16}",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "body",
+              "modifier": "params.card.expiry",
+              "value": "[0-9]{4}",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'cards' (concat (body 'params.card.pan') '.token')}}",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0e5550b8-8582-4d61-9f74-587feabc8dbb",
+          "body": "{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n  \"error\": {\n    \"code\":-404,\n    \"messeage\":\"id not found\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "cards.new.verify id not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.new.verify",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.id",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.id",
+              "value": "[0-9]{16}",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "[0-9]{6}",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'otpData' (body 'params.otp.id')}}",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "80d86c82-3eee-4f6c-96e1-78209aae8dcd",
+          "body": "{\n  \"jsonrpc\": \"{{body 'jsonrpc'}}\",\n  \"id\": \"{{body 'id'}}\",\n  \"error\": {\n    \"code\": -270, \n    \"message\": \"OTP has expired!\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "cards.new.verify otp has expired",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.new.verify",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.id",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.id",
+              "value": "[0-9]{16}",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "[0-9]{6}",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'otpData' (body 'params.otp.id')}}",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "111111",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "29f1ca42-1cb4-41b4-884f-1ced3c0c5903",
+          "body": "{{setVar 'tempPan' (data 'otpData' (concat (body 'params.otp.id') '.params.card.pan'))}}\n{\n  \"jsonrpc\": \"{{body 'jsonrpc'}}\",\n  \"id\": {{body 'id'}},\n  \"result\": {\n    \"id\": \"{{data 'cards' (concat (getVar 'tempPan') '.token')}}\",\n    \"username\": \"mockserver\",\n    \"pan\": \"{{getVar 'tempPan'}}\",\n    \"status\": 0,\n    \"phone\": \"{{data 'cards' (concat (getVar 'tempPan') '.phone')}}\",\n    \"fullName\": \"{{data 'cards' (concat (getVar 'tempPan') '.fullname')}}\",\n    \"balance\": {{data 'cards' (concat (getVar 'tempPan') '.balance')}},\n    \"sms\": {{data 'cards' (concat (getVar 'tempPan') '.sms')}},\n    \"pincnt\": {{data 'cards' (concat (getVar 'tempPan') '.pincnt')}},\n    \"aacct\": \"{{data 'cards' (concat (getVar 'tempPan') '.aacct')}}\",\n    \"par\": \"{{data 'cards' (concat (getVar 'tempPan') '.par')}}\",\n    \"cardtype\": \"{{data 'cards' (concat (getVar 'tempPan') '.cardtype')}}\",\n    \"holdAmount\": {{data 'cards' (concat (getVar 'tempPan') '.holdAmount')}},\n    \"cashbackAmount\": {{data 'cards' (concat (getVar 'tempPan') '.cashbackAmount')}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "cards.new.verify success",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.new.verify",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.id",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.id",
+              "value": "[0-9]{16}",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "[0-9]{6}",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'otpData' (body 'params.otp.id')}}",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "000000",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "cd2832a4-6520-4478-9c51-a2be06d64124",
+          "body": "{\n  \"jsonrpc\": \"{{body 'jsonrpc'}}\",\n  \"id\": \"{{body 'id'}}\",\n  \"error\": {\n    \"code\": -269, \n    \"message\": \"OTP is not correct!\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "cards.new.verify otp invalid",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.new.verify",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.id",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.id",
+              "value": "[0-9]{16}",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.otp.code",
+              "value": "[0-9]{6}",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'otpData' (body 'params.otp.id')}}",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "ba06a0b2-752a-48d4-aad2-66dd9515a51d",
+          "body": "{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n \"error\":{\n\"code\":-393,\n\"message\":\"PINFL not found!\"\n}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "card.check.pinfl pinfl not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.check.pinfl",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.cardinfo",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.cardinfo.cardId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.cardinfo.pinfl",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'token_pinfl'  (body 'params.cardinfo.cardId') }}",
+              "value": "{{body 'params.cardinfo.cardId' }}",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "6ff0c981-45db-4c3a-b80a-ee98cd7c35ca",
+          "body": "{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n  \"error\":{\n    \"code\":-392,\n    \"message\":\"Сard does not belong to this PINFL!\"\n}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "card.check.pinfl Сard does not belong to this PINFL",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.check.pinfl",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.cardinfo",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.cardinfo.cardId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.cardinfo.pinfl",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{body 'params.cardinfo.pinfl'}}",
+              "value": "{{data 'token_pinfl'  (body 'params.cardinfo.cardId') }}",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "924b632b-7b3e-4fd9-9be8-a7ad4bdc37fe",
+          "body": "{\n  \"jsonrpc\": {{body 'jsonrpc'}},\n  \"id\": {{body 'id'}},\n  \"result\":{\n\"code\":0,\n\"message\":\"Card belong to this PINFL!\"\n}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "card.check.pinfl success",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "method",
+              "value": "cards.check.pinfl",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "params",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.cardinfo",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.cardinfo.cardId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "params.cardinfo.pinfl",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{body 'params.cardinfo.pinfl'}}",
+              "value": "{{data 'token_pinfl'  (body 'params.cardinfo.cardId') }}",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f7b4af87-3cbf-4d6f-a10e-1429cfee15bc",
+          "body": "{\n    \"jsonrpc\": 2.0,\n    \"id\": 292,\n    \"error\": {\n      \"message\": \"method not found\",\n      \"code\": 500\n    }\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "method not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "7c614764-21a1-4f9b-b459-8a2227e5922a"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "584a0e83-19d1-4ccd-83ba-bc623df4dff3",
+      "id": "otpData",
+      "name": "otpData",
+      "documentation": "",
+      "value": "{}"
+    },
+    {
+      "uuid": "055ab79e-9b92-44f3-9e36-ad8a72db7f87",
+      "id": "cards",
+      "name": "cards",
+      "documentation": "",
+      "value": "{\n  \"8600010111111111\": {\n    \"pinfl\": \"11111111111111\",\n    \"token\": \"8600010111111111token\",\n    \"phoneMask\": \"*********0000\",\n    \"phone\": \"998900000000\",\n    \"verified\": false,\n    \"fullName\": \"\",\n    \"balance\": 1000,\n    \"pincnt\": \"123123123123123\",\n    \"aacct\": \"123123123123\",\n    \"par\": \"123123123\",\n    \"cardtype\": \"private\",\n    \"holdAmount\": 0,\n    \"cashbackAmount\": 0,\n    \"sms\": true\n  }\n}"
+    },
+    {
+      "uuid": "61302a51-40cb-4a27-8cfb-ece30553535b",
+      "id": "token_pinfl",
+      "name": "token_pinfl",
+      "documentation": "",
+      "value": "{\n  \"8600010111111111token\":\"11111111111111\"\n}"
+    }
+  ],
+  "callbacks": [
+    {
+      "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+      "id": "prz2",
+      "uri": "http://mockoon-logger.mockoon.svc.cluster.local:8080/callback",
+      "name": "request logger",
+      "documentation": "",
+      "method": "post",
+      "headers": [],
+      "bodyType": "INLINE",
+      "body": "",
+      "databucketID": "",
+      "filePath": "",
+      "sendFileAsBody": true
+    }
+  ]
+}
