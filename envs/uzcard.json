@@ -47,7 +47,12 @@
           "fallbackTo404": false,
           "default": false,
           "crudKey": "id",
-          "callbacks": []
+          "callbacks": [
+            {
+              "uuid": "14ed9623-2324-4d25-9f28-f006fb88852e",
+              "latency": 0
+            }
+          ]
         },
         {
           "uuid": "49a1f513-a4a4-4da6-ab6d-90f71f57275a",
@@ -905,7 +910,12 @@
       "name": "request logger",
       "documentation": "",
       "method": "post",
-      "headers": [],
+      "headers": [
+        {
+          "key": "instance",
+          "value": "uzcard"
+        }
+      ],
       "bodyType": "INLINE",
       "body": "",
       "databucketID": "",
