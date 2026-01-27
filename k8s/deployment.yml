@@ -23,7 +23,7 @@ spec:
             - containerPort: 3000
           volumeMounts:
             - name: envs-volume
-              mountPath: /envs
+              mountPath: /app/envs
       volumes:
         - name: envs-volume
           hostPath:

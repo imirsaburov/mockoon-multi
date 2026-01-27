@@ -1,12 +1,12 @@
 
 services:
   mockoon-multi:
-    image: dockerhub.hayotbank.uz/mockoon-multi:1.0.0
+    image: dockerhub.hayotbank.uz/mockoon-multi:1.2.0
     build: .
     container_name: mockoon-gateway
     ports:
       - "3000:3000"
     volumes:
-      - ./envs:/envs
+      - ./envs:/app/envs
     restart: unless-stopped
-# docker buildx build --platform linux/amd64,linux/arm64 -t dockerhub.hayotbank.uz/mockoon-multi:1.0.0 --push .
+# docker buildx build --platform linux/amd64,linux/arm64 -t dockerhub.hayotbank.uz/mockoon-multi:1.2.0 --push .
