@@ -6,6 +6,7 @@
   "dependencies": {
     "express": "^5.2.1",
     "http-proxy": "^1.18.1",
-    "@mockoon/commons-server": "^9.5.0"
+    "@mockoon/commons-server": "^9.5.0",
+    "multer": "^2.0.2"
   }
 }

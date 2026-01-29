@@ -1,7 +1,7 @@
 
 services:
   mockoon-multi:
-    image: dockerhub.hayotbank.uz/mockoon-multi:1.2.0
+    image: dockerhub.hayotbank.uz/mockoon-multi:1.2.1
     build: .
     container_name: mockoon-gateway
     ports:

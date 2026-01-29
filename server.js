@@ -4,6 +4,8 @@ const path = require('path');
 const {MockoonServer} = require('@mockoon/commons-server');
 const httpProxy = require('http-proxy');
 const crypto = require('crypto');
+const multer = require('multer');
+const upload = multer(); // memory storage
 
 
 const app = express();
@@ -68,6 +70,11 @@ function loadJsMocks(app) {
         }
 
         const router = express.Router();
+
+        router.use(upload.any());
+        router.use(express.json({limit: '10mb'}));
+        router.use(express.urlencoded({extended: true, limit: '10mb'}));
+
         mock.routes(router);
 
         app.use(`/${mock.name}`, router);
@@ -84,21 +91,24 @@ function loadJsMocks(app) {
 
 app.use('/admin/list', (req, res) => {
     try {
-        const data = Object.keys(envs)
+        const data = Object
+            .keys(envs)
             .map(name => {
                 const env = envs[name];
                 return {
                     name: name,
-                    filePath: env.filePath,
-                    port: env.port
+                    type: env.type
                 }
             })
-        res.status(200).json(data);
+        res
+            .status(200)
+            .json(data);
+
     } catch (err) {
         console.error(err)
-        res.status(500).json({
-            error: err.message,
-        });
+        res
+            .status(500)
+            .json({error: err.message});
     }
 });
 
@@ -108,27 +118,32 @@ app.use('/:name', (req, res, next) => {
 
         const env = envs[name];
         if (!env) {
-            return res.status(404).json({error: `Mock "${name}" not found`});
+            return res
+                .status(404)
+                .json({error: `Mock "${name}" not found`});
         }
 
         switch (env.type) {
             case 'mockoon':
-                req.url = req.url.replace(new RegExp(`^/${name}`), '') || '/';
-                proxy.web(req, res, {
-                    target: `http://127.0.0.1:${env.port}`,
-                });
+                req.url = req
+                    .url
+                    .replace(new RegExp(`^/${name}`), '') || '/';
+                proxy
+                    .web(req, res, {target: `http://127.0.0.1:${env.port}`});
                 break;
             case 'js':
                 return next();
             default:
-                res.status(500).json({error: `Unknown mock type for "${name}"`});
+                res
+                    .status(500)
+                    .json({error: `Unknown mock type for "${name}"`});
         }
 
     } catch (err) {
         console.error(err)
-        res.status(500).json({
-            error: err.message,
-        });
+        res
+            .status(500)
+            .json({error: err.message});
     }
 });
 
