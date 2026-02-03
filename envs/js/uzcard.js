@@ -6,6 +6,7 @@ const METHODS = {
     "cards.new.otp": cardsNewOtp,
     "cards.new.verify": cardsNewVerify,
     "cards.check.pinfl": checkPinfl,
+    "cards.get": cardsGet,
 }
 
 function cardsNewOtp(params, req) {
@@ -97,6 +98,35 @@ function cardsNewVerify(params, req) {
         code: -269,
         message: "OTP is not correct!"
     }
+
+    return res;
+}
+
+function cardsGet(params, req) {
+    const res = [];
+
+    const {ids} = params;
+
+    ids.filter(id => uzcardData.CARDS.filter(card => card.token === id).length > 0)
+        .forEach(id => {
+            const card = uzcardData.CARDS.filter(card => card.token === id)[0];
+            res.push({
+                id: card.token,
+                username: "mockuser",
+                pan: card.pan,
+                status: card.status,
+                phone: card.phone,
+                fullName: card.fullName,
+                balance: card.balance,
+                sms: card.sms,
+                pincnt: card.pincnt,
+                aacct: card.aacct,
+                par: card.par,
+                cardtype: card.cardtype,
+                holdAmount: card.holdAmount,
+                cashbackAmount: card.cashbackAmount,
+            });
+        });
 
     return res;
 }
