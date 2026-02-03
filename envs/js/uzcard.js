@@ -103,14 +103,16 @@ function cardsNewVerify(params, req) {
 }
 
 function cardsGet(params, req) {
-    const res = [];
+    const res = {};
+    const result = [];
+    res.result = result;
 
     const {ids} = params;
 
     ids.filter(id => uzcardData.CARDS.filter(card => card.token === id).length > 0)
         .forEach(id => {
             const card = uzcardData.CARDS.filter(card => card.token === id)[0];
-            res.push({
+            result.append({
                 id: card.token,
                 username: "mockuser",
                 pan: card.pan,
