@@ -144,11 +144,12 @@ module.exports = {
     routes(app) {
         app.post('/api/jsonrpc', (req, res) => {
 
-            const {id, method, params} = req.body;
+            const {id, jsonrpc, method, params} = req.body;
 
             try {
                 const response = METHODS[method](params, req);
                 response.id = id;
+                response.jsonrpc = jsonrpc;
                 res.json(response);
             } catch (err) {
                 res.json({
