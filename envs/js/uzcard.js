@@ -139,7 +139,7 @@ function randomInt(min, max) {
 }
 
 module.exports = {
-    name: 'uzcardv2',
+    name: 'uzcard',
 
     routes(app) {
         app.post('/api/jsonrpc', (req, res) => {

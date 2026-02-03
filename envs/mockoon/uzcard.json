@@ -1,7 +1,7 @@
 {
   "uuid": "c9ce0840-63fb-4eef-b750-b443bcad41aa",
   "lastMigration": 33,
-  "name": "uzcard",
+  "name": "uzcard-mockoon",
   "endpointPrefix": "",
   "latency": 0,
   "port": 10000,
