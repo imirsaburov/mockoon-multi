@@ -112,7 +112,7 @@ function cardsGet(params, req) {
     ids.filter(id => uzcardData.CARDS.filter(card => card.token === id).length > 0)
         .forEach(id => {
             const card = uzcardData.CARDS.filter(card => card.token === id)[0];
-            result.append({
+            result.push({
                 id: card.token,
                 username: "mockuser",
                 pan: card.pan,
