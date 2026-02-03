@@ -148,9 +148,9 @@ module.exports = {
 
             try {
                 const response = METHODS[method](params, req);
-                response.id = id;
-                response.jsonrpc = jsonrpc;
-                res.json(response);
+                res.json({
+                    jsonrpc, id, ...response
+                });
             } catch (err) {
                 res.json({
                     id,
