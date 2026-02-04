@@ -179,7 +179,10 @@ module.exports = {
             const {id, jsonrpc, method, params} = req.body;
 
             try {
-                const response = METHODS[method](params, req);
+                const method = METHODS[method];
+                if (!method)
+                    throw new Error('Method not found');
+                const response = method(params, req);
                 res.json({
                     jsonrpc, id, ...response
                 });
