@@ -7,6 +7,7 @@ const METHODS = {
     "cards.new.verify": cardsNewVerify,
     "cards.check.pinfl": checkPinfl,
     "cards.get": cardsGet,
+    "balance.get": balanceGet,
 }
 
 function cardsNewOtp(params, req) {
@@ -127,6 +128,26 @@ function cardsGet(params, req) {
                 cardtype: card.cardtype,
                 holdAmount: card.holdAmount,
                 cashbackAmount: card.cashbackAmount,
+            });
+        });
+
+    return res;
+}
+
+function balanceGet(params, req) {
+    const res = {};
+    const result = [];
+    res.result = result;
+
+    const {ids} = params;
+
+    ids.filter(id => uzcardData.CARDS.filter(card => card.token === id).length > 0)
+        .forEach(id => {
+            const card = uzcardData.CARDS.filter(card => card.token === id)[0];
+            result.push({
+                id: card.token,
+                pan: card.pan,
+                balance: card.balance,
             });
         });
 
