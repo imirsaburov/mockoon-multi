@@ -136,7 +136,10 @@ function cardsGet(params, req) {
 
 function balanceGet(params, req) {
     const res = {};
-    const result = [];
+    const result = {};
+    const balanceInfo = []
+    result.balanceInfo = balanceInfo;
+    let totalBalance = 0;
     res.result = result;
 
     const {ids} = params;
@@ -144,12 +147,15 @@ function balanceGet(params, req) {
     ids.filter(id => uzcardData.CARDS.filter(card => card.token === id).length > 0)
         .forEach(id => {
             const card = uzcardData.CARDS.filter(card => card.token === id)[0];
-            result.push({
+            totalBalance += card.balance || 0;
+            balanceInfo.push({
                 id: card.token,
                 pan: card.pan,
                 balance: card.balance,
             });
         });
+
+    result.totalBalance = totalBalance;
 
     return res;
 }
