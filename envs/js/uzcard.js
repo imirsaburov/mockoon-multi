@@ -147,7 +147,7 @@ function balanceGet(params, req) {
     ids.filter(id => uzcardData.CARDS.filter(card => card.token === id).length > 0)
         .forEach(id => {
             const card = uzcardData.CARDS.filter(card => card.token === id)[0];
-            totalBalance += card.balance || 0;
+            totalBalance += card?.balance || 0;
             balanceInfo.push({
                 id: card.token,
                 pan: card.pan,
