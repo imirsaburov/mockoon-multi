@@ -54,6 +54,68 @@
               "value": "",
               "invert": true,
               "operator": "null"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'data' (body 'pin')}}",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0d5480f9-894d-4db3-8158-4c10a0c79211",
+          "body": "{\n  \"requestId\": \"{{body 'request_id'}}\",\n  \"liveness\": {\n    \"score\": 0.90000,\n    \"result\": \"genuine\"\n  },\n  \"similarity\": {\n    \"score\": 0.9999,\n    \"result\": \"same\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "success not found data",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "request_id",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "pin",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "birth_date",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "selfie_base64",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'data' (body 'pin')}}",
+              "value": "",
+              "invert": false,
+              "operator": "null"
             }
           ],
           "rulesOperator": "AND",
