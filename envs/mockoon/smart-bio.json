@@ -1,0 +1,150 @@
+{
+  "uuid": "cc210e3e-49c0-4ae4-8650-289e9a054d5f",
+  "lastMigration": 33,
+  "name": "smart-bio",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "cb8e5dc2-8fd4-4e95-b661-6289504aa465",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "identity/v1/verification/pin",
+      "responses": [
+        {
+          "uuid": "c70edca8-7bf9-4878-9214-e04b35c3e623",
+          "body": "{\n    \"requestId\": \"{{body 'request_id'}}\",\n    \"liveness\": {{data 'data' (concat (body 'pin') \".liveness\")}},\n    \"similarity\": {{data 'data' (concat (body 'pin') \".similarity\")}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "success case",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "request_id",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "pin",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "birth_date",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "selfie_base64",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "d0335ff1-8b16-424a-8283-56f6861c08d0",
+          "body": "{\n  \"code\": 400,\n  \"message\": \"provided params are not enough. please provide required params\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "invalid request body",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "cb8e5dc2-8fd4-4e95-b661-6289504aa465"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "14cb1684-8f29-4e9b-9c7d-3d26c28a98ee",
+      "id": "sl3z",
+      "name": "data",
+      "documentation": "",
+      "value": "{\n    \"12345678901234\": {\n        \"liveness\": {\n            \"score\": 0.8696596,\n            \"result\": \"genuine\"\n        },\n        \"similarity\": {\n            \"score\": 0.9982,\n            \"result\": \"same\"\n        }\n    },\n    \"12345678901233\": {\n        \"liveness\": {\n            \"score\": 0.5032,\n            \"result\": \"genuine\"\n        },\n        \"similarity\": {\n            \"score\": 0.2001,\n            \"result\": \"same\"\n        }\n    }\n}"
+    }
+  ],
+  "callbacks": []
+}
