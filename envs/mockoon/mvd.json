@@ -1,0 +1,170 @@
+{
+  "uuid": "7b2bf888-aac5-4077-89a2-df309b3b47a7",
+  "lastMigration": 33,
+  "name": "mvd",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "a54b98fa-c1be-4b91-822f-706b2bf2018c",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "mvd/services/address/info/pin/v1",
+      "responses": [
+        {
+          "uuid": "ec4f5519-2266-4ecb-9235-d05de59d0531",
+          "body": "{\n  \"Data\": {{data 'data' (body 'pinfl')}},\n  \"AnswereId\": 1,\n  \"AnswereMessage\": \"OK\",\n  \"AnswereComment\": \"Success\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "success case",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "pinfl",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'data' (body 'pinfl')}}",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "733503ad-529c-4c95-8e67-2b41974c2ca1",
+          "body": "{\n  \"Data\": {{data 'data' 'default'}},\n  \"AnswereId\": 1,\n  \"AnswereMessage\": \"OK\",\n  \"AnswereComment\": \"Success\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "success not found data",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "pinfl",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "templating",
+              "modifier": "{{data 'data' (body 'pinfl')}}",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "6362e205-d725-4e26-9db8-aa12562e1a88",
+          "body": "{\n  \"code\": 400,\n  \"message\": \"provided params are not enough. please provide required params\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "invalid request body",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "a54b98fa-c1be-4b91-822f-706b2bf2018c"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "e9417e2f-c2e6-4b1d-ac3d-172bcf608b57",
+      "id": "sl3z",
+      "name": "data",
+      "documentation": "",
+      "value": "{\n  \"default\": {\n    \"PermanentRegistration\": {\n      \"Cadastre\": \"10:09:01:01:03:5047:0001:084\",\n      \"Country\": {\n        \"Id\": 182,\n        \"Value\": \"ЎЗБЕКИСТОН\",\n        \"IdValue\": \"(182) ЎЗБЕКИСТОН\"\n      },\n      \"Region\": {\n        \"Id\": 10,\n        \"Value\": \"ТОШКЕНТ ШАҲРИ\",\n        \"IdValue\": \"(10) ТОШКЕНТ ШАҲРИ\"\n      },\n      \"District\": {\n        \"Id\": 1003,\n        \"Value\": \"МИРЗО УЛУҒБЕК ТУМАНИ\",\n        \"IdValue\": \"(1003) МИРЗО УЛУҒБЕК ТУМАНИ\"\n      },\n      \"Maxalla\": {\n        \"Id\": 1046,\n        \"Value\": \"ОЙДИН МФЙ\",\n        \"Guid\": \"109-0142\"\n      },\n      \"Street\": {\n        \"Id\": 1202,\n        \"Value\": \"ОККУРГОН КУЧАСИ\",\n        \"Guid\": \"ТМУ00622\"\n      },\n      \"Address\": \"ОҚ-ҚЎРҒОН МФЙ, ОҚҚЎРҒОН КЎЧАСИ,  uy:35 xonadon:84\",\n      \"RegistrationDate\": \"2001-02-13T00:00:00\"\n    },\n    \"TemproaryRegistrations\": {\n      \"Cadastre\": \"10:09:01:01:03:5047:0001:084\",\n      \"Country\": {\n        \"Id\": 182,\n        \"Value\": \"ЎЗБЕКИСТОН\",\n        \"IdValue\": \"(182) ЎЗБЕКИСТОН\"\n      },\n      \"Region\": {\n        \"Id\": 10,\n        \"Value\": \"ТОШКЕНТ ШАҲРИ\",\n        \"IdValue\": \"(10) ТОШКЕНТ ШАҲРИ\"\n      },\n      \"District\": {\n        \"Id\": 1003,\n        \"Value\": \"МИРЗО УЛУҒБЕК ТУМАНИ\",\n        \"IdValue\": \"(1003) МИРЗО УЛУҒБЕК ТУМАНИ\"\n      },\n      \"Maxalla\": {\n        \"Id\": 1046,\n        \"Value\": \"ОЙДИН МФЙ\",\n        \"Guid\": \"109-0142\"\n      },\n      \"Street\": {\n        \"Id\": 1202,\n        \"Value\": \"ОККУРГОН КУЧАСИ\",\n        \"Guid\": \"ТМУ00622\"\n      },\n      \"Address\": \"ОҚ-ҚЎРҒОН МФЙ, ОҚҚЎРҒОН КЎЧАСИ,  uy:35 xonadon:84\",\n      \"RegistrationDate\": \"2001-02-13T00:00:00\"\n    }\n  }\n}"
+    }
+  ],
+  "callbacks": []
+}
